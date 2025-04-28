@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load produtos_tags %}
+
+{% block conteudo %}
+<h1>Produtos</h1>
+
+<form method="get">
+    <input type="text" name="busca" placeholder="Buscar..." value="{{ request.GET.busca }}">
+    <select name="ordenar_por">
+        <option value="nome" {% if request.GET.ordenar_por == 'nome' %}selected{% endif %}>Nome (A-Z)</option>
+        <option value="-preco" {% if request.GET.ordenar_por == '-preco' %}selected{% endif %}>Preço (maior primeiro)</option>
+        <option value="preco" {% if request.GET.ordenar_por == 'preco' %}selected{% endif %}>Preço (menor primeiro)</option>
+    </select>
+    <button type="submit">Filtrar</button>
+</form>
+
+<ul>
+  {% for produto in produtos %}
+    <li>
+      <strong>{{ produto.nome }}</strong> - {{ produto.preco|formata_preco }}
+      <a href="{% url 'detalhe_produto' produto.pk %}">Ver detalhes</a>
+    </li>
+  {% empty %}
+    <li>Nenhum produto encontrado.</li>
+  {% endfor %}
+</ul>
+
+{% if is_paginated %}
+<div>
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+  {% endif %}
+  Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}
