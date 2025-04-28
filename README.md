@@ -32,11 +32,10 @@ Crie um projeto Django usando:
 
 - Subir no GitHub ou enviar ZIP com:
   - Código fonte do projeto
-  - Imagens usadas (em `media/`)
   - Prints do funcionamento (opcional)
 
 ---
 
 ## 🤝 **Dúvidas?**
 
-Caso tenha dúvidas, entre em contato pelo **Discord** ou pelo e-mail do professor. Bons estudos e divirta-se criando seu próprio catálogo! 🍿
+Caso tenha dúvidas, entre em contato pelo **Discord** ou pelo e-mail do professor. Bons estudos e divirta-se! 🐍
